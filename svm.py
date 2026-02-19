@@ -1,31 +1,39 @@
 """
 SVM classification example using scikit-learn.
-This script trains a simple SVM model and predicts results.
+
+This script trains a simple Support Vector Machine model
+and visualizes the classification data.
 """
 
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import svm
 
-# Sample dataset
-X_MARKS = np.array([[1, 2], [2, 3], [3, 3], [2, 1], [3, 2]])
-Y_LABELS = [0, 0, 0, 1, 1]
 
-# Create SVM model
-MODEL = svm.SVC(kernel="linear")
+def main():
+    """Train SVM model and display prediction + plot."""
 
-# Train model
-MODEL.fit(X_MARKS, Y_LABELS)
+    # Sample dataset
+    x_marks = np.array([[1, 2], [2, 3], [3, 3], [2, 1], [3, 2]])
+    y_labels = [0, 0, 0, 1, 1]
 
-# Predict
-PREDICTION = MODEL.predict([[2, 2]])
+    # Create model
+    model = svm.SVC(kernel="linear")
 
-print("Prediction:", PREDICTION)
+    # Train
+    model.fit(x_marks, y_labels)
 
-# Plotting (so imports are used)
-plt.scatter(X_MARKS[:, 0], X_MARKS[:, 1], c=Y_LABELS)
-plt.title("SVM Classification")
-plt.xlabel("Feature 1")
-plt.ylabel("Feature 2")
-plt.show()
+    # Predict
+    prediction = model.predict([[2, 2]])
+    print("Prediction:", prediction)
+
+    # Plot (so matplotlib import is used)
+    plt.scatter(x_marks[:, 0], x_marks[:, 1], c=y_labels)
+    plt.title("SVM Classification")
+    plt.xlabel("Feature 1")
+    plt.ylabel("Feature 2")
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()
