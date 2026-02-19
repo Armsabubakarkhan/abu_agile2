@@ -1,11 +1,31 @@
+"""
+SVM classification example using scikit-learn.
+This script trains a simple SVM model and predicts results.
+"""
+
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.svm import SVC
-X = [[30],[40],[50],[60],[20],[10],[70]]
-y = [0,1,1,1,0,0,1]
-classifier = SVC(kernel = 'linear', random_state = 0)
-classifier.fit(X,y)
-X_marks=[[55]]
-y=(classifier.predict(X_marks))
-print(y)
+import matplotlib.pyplot as plt
+from sklearn import svm
+
+# Sample dataset
+X_MARKS = np.array([[1, 2], [2, 3], [3, 3], [2, 1], [3, 2]])
+Y_LABELS = [0, 0, 0, 1, 1]
+
+# Create SVM model
+MODEL = svm.SVC(kernel="linear")
+
+# Train model
+MODEL.fit(X_MARKS, Y_LABELS)
+
+# Predict
+PREDICTION = MODEL.predict([[2, 2]])
+
+print("Prediction:", PREDICTION)
+
+# Plotting (so imports are used)
+plt.scatter(X_MARKS[:, 0], X_MARKS[:, 1], c=Y_LABELS)
+plt.title("SVM Classification")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.show()
