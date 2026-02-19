@@ -8,4 +8,4 @@ classifier = SVC(kernel = 'linear', random_state = 0)
 classifier.fit(X,y)
 X_marks=[[55]]
 y=(classifier.predict(X_marks))
-return y
+print(y)
