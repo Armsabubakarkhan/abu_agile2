@@ -1,21 +1,38 @@
-"""Decision Tree Classifier example to predict class for given marks."""
+"""
+SVM classification example using scikit-learn.
 
-# pylint: disable=import-error
-from sklearn.tree import DecisionTreeClassifier
+This script trains a simple Support Vector Machine model
+and visualizes the classification data.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import svm
 
 
-def main() -> None:
-    """Train a Decision Tree model and make a prediction."""
-    features = [[30], [40], [50], [60], [20], [10], [70], [39]]
-    labels = [0, 1, 1, 1, 0, 0, 1, 0]
+def main():
+    """Train SVM model and display prediction + plot."""
 
-    classifier = DecisionTreeClassifier(criterion="entropy", random_state=0)
-    classifier.fit(features, labels)
+    # Sample dataset
+    x_marks = np.array([[1, 2], [2, 3], [3, 3], [2, 1], [3, 2]])
+    y_labels = [0, 0, 0, 1, 1]
 
-    test_marks = [[39]]
-    prediction = classifier.predict(test_marks)
+    # Create model
+    model = svm.SVC(kernel="linear")
 
-    print(prediction)
+    # Train
+    model.fit(x_marks, y_labels)
+
+    # Predict
+    prediction = model.predict([[2, 2]])
+    print("Prediction:", prediction)
+
+    # Plot (so matplotlib import is used)
+    plt.scatter(x_marks[:, 0], x_marks[:, 1], c=y_labels)
+    plt.title("SVM Classification")
+    plt.xlabel("Feature 1")
+    plt.ylabel("Feature 2")
+    plt.show()
 
 
 if __name__ == "__main__":
