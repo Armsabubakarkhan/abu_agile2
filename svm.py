@@ -14,7 +14,7 @@ def main():
     """Train SVM model and display prediction + plot."""
 
     # Sample dataset
-    x_marks = np.array([[1, 2], [2, 3], [3, 3], [2, 1], [3, 2]])
+    x_marks = np.array([[1, 2], [2, 3], [3, 3], [2, 1], [3, 2],])
     y_labels = [0, 0, 0, 1, 1]
 
     # Create model
